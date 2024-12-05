@@ -1,0 +1,20 @@
+The solution involves ensuring the `calc()` expression always results in a non-negative value for properties that cannot accept negative values.  Handle potential negative results gracefully (perhaps by using `max()` or clamping).  Also, strictly enforce the presence of spaces around operators in your `calc()` expressions.
+
+```css
+/*bug.css*/
+#element {
+  width: calc(100% - 200px);
+  height: calc(100px - 200px);
+}
+/*bugSolution.css*/
+#element {
+  width: calc(max(0, 100% - 200px));
+  height: calc(max(0, 100px - 200px));
+}
+
+#anotherElement {
+  width: calc(100% - 50px); /*Correct*/
+  /*Incorrect, Missing spaces*/
+  /*width: calc(100%-50px);*/
+}
+```
